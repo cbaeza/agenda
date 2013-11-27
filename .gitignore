@@ -2,3 +2,5 @@
 agenda.iml
 target
 target/*
+.idea
+.idea/*
