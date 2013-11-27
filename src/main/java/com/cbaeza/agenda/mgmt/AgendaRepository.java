@@ -7,11 +7,8 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 
 /**
- * Created with IntelliJ IDEA.
  * User: cbaeza
- * Date: 15.11.13
- * Time: 17:29
- * To change this template use File | Settings | File Templates.
+ * Since: 15.11.13
  */
 public interface AgendaRepository extends CrudRepository<Agendas, Integer> {
 

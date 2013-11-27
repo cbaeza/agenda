@@ -9,10 +9,10 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
     <!-- Scans the classpath of this application for @Components to deploy as beans -->
-    <context:component-scan base-package="com.cbaeza.agenda" />
+    <context:component-scan base-package="com.cbaeza.agenda"/>
 
     <!-- Configures the @Controller programming model -->
-    <mvc:annotation-driven />
+    <mvc:annotation-driven/>
 
     <bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping"/>
 
@@ -32,13 +32,13 @@
     <bean id="viewResolver"
           class="org.springframework.web.servlet.view.InternalResourceViewResolver"
           p:prefix="/WEB-INF/jsp/"
-          p:suffix=".jsp" />
+          p:suffix=".jsp"/>
 
     <!--
     The index controller.
     -->
     <bean name="indexController"
           class="com.cbaeza.agenda.controller.indexController"
-          p:viewName="index"  />
+          p:viewName="index"/>
 
 </beans>

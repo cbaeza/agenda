@@ -24,9 +24,8 @@ import java.util.List;
 public class indexController {
 
     public static final String VIEW_NAME = "index";
-    private String viewName;
-
     protected final Log logger = LogFactory.getLog(getClass());
+    private String viewName;
     @Autowired
     private AgendaRepository agendaRepository;
 
