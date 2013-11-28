@@ -11,12 +11,12 @@
     </head>
 
     <body>
-        <h1>Agendas of Carlos</h1>
+        <h1>Agendas of Carlos in Git Hub ---+++</h1>
         <h2>Message : ${message}</h2>
         <h2>Agendas : ${agendas_size}</h2>
             <c:forEach items="${agendas}" var="agenda">
                 <p>
-                <c:out value="ID : ${agenda.id}"/><br/>
+                <c:out value="ID: "/><a href="edit/${agenda.id}">${agenda.id}</a><br/>
                 <c:out value="Title : ${agenda.title}"/><br/>
                 <c:out value="User : ${agenda.user}"/><br/>
                 <c:out value="Password : ${agenda.password}"/><br/>

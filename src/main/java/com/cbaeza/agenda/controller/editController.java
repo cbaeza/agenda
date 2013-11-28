@@ -7,42 +7,22 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * User: cbaeza
- * Since: 15.11.13
+ * Since: 27.11.13
  */
 @Controller
-@RequestMapping("/index")
-public class indexController {
+@RequestMapping("/edit")
+public class editController {
 
-    public static final String VIEW_NAME = "index";
+    public static final String VIEW_NAME = "edit";
     protected final Log logger = LogFactory.getLog(getClass());
     @Autowired
     private AgendaRepository agendaRepository;
-
-    @RequestMapping(method = RequestMethod.GET)
-    public String getAll(final ModelMap model) {
-
-        model.addAttribute("message", "hello from index");
-        final List<Agendas> agendasArrayList = new ArrayList<>(0);
-        final List<Agendas> all = agendaRepository.findAllAgendas();
-
-        for (Agendas a : all) {
-            agendasArrayList.add(a);
-        }
-
-        model.addAttribute("agendas", agendasArrayList);
-        model.addAttribute("agendas_size", agendasArrayList.size());
-        return VIEW_NAME;
-    }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String getAgenda(@PathVariable("id") String agendaID, final Model model) {
@@ -50,5 +30,4 @@ public class indexController {
         model.addAttribute("agenda", agenda);
         return VIEW_NAME;
     }
-
 }

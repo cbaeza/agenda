@@ -21,13 +21,14 @@
     for the index controller we are using ParameterizableViewController, so we must
     define an explicit mapping for it.
     -->
-    <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+    <!--bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
         <property name="mappings">
             <props>
-                <prop key="index.htm">indexController</prop>
+                <prop key="index">indexController</prop>
+                <prop key="edit">editController</prop>
             </props>
         </property>
-    </bean>
+    </bean-->
 
     <bean id="viewResolver"
           class="org.springframework.web.servlet.view.InternalResourceViewResolver"
@@ -37,8 +38,11 @@
     <!--
     The index controller.
     -->
-    <bean name="indexController"
+    <!--bean name="indexController"
           class="com.cbaeza.agenda.controller.indexController"
           p:viewName="index"/>
 
+    <bean name="editController"
+          class="com.cbaeza.agenda.controller.editController"
+          p:viewName="edit"/-->
 </beans>
