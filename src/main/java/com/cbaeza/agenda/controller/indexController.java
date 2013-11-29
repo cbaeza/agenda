@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -47,7 +48,10 @@ public class indexController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String getAgenda(@PathVariable("id") String agendaID, final Model model) {
         final Agendas agenda = agendaRepository.findOne(Integer.valueOf(agendaID));
-        model.addAttribute("agenda", agenda);
+        final List<Agendas> agendasArrayList = Arrays.asList(agenda);
+        model.addAttribute("agendas", agendasArrayList);
+        model.addAttribute("message", "done.");
+        model.addAttribute("agendas_size", agendasArrayList.size());
         return VIEW_NAME;
     }
 

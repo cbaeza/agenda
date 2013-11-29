@@ -11,7 +11,7 @@
     </head>
 
     <body>
-        <h1>Show Agenda</h1>
+        <h1>Your personal agendas on Git Hub ---+++</h1>
         <h2>Message : ${message}</h2>
         <p>
             <c:out value="ID : ${agenda.id}"/><br/>
