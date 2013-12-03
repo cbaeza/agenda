@@ -22,7 +22,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/index")
-public class indexController {
+public class IndexController {
 
     public static final String VIEW_NAME = "index";
     protected final Log logger = LogFactory.getLog(getClass());
@@ -47,6 +47,7 @@ public class indexController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String getAgenda(@PathVariable("id") String agendaID, final Model model) {
+
         final Agendas agenda = agendaRepository.findOne(Integer.valueOf(agendaID));
         final List<Agendas> agendasArrayList = Arrays.asList(agenda);
         model.addAttribute("agendas", agendasArrayList);

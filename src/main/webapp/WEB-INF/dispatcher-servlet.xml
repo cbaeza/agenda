@@ -24,8 +24,8 @@
     <!--bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
         <property name="mappings">
             <props>
-                <prop key="index">indexController</prop>
-                <prop key="edit">editController</prop>
+                <prop key="index">IndexController</prop>
+                <prop key="edit">EditController</prop>
             </props>
         </property>
     </bean-->
@@ -38,11 +38,11 @@
     <!--
     The index controller.
     -->
-    <!--bean name="indexController"
-          class="com.cbaeza.agenda.controller.indexController"
+    <!--bean name="IndexController"
+          class="com.cbaeza.agenda.controller.IndexController"
           p:viewName="index"/>
 
-    <bean name="editController"
-          class="com.cbaeza.agenda.controller.editController"
+    <bean name="EditController"
+          class="com.cbaeza.agenda.controller.EditController"
           p:viewName="edit"/-->
 </beans>
