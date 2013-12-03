@@ -16,12 +16,36 @@
         <h2>Message : ${message}</h2>
         <h2>Spring form</h2>
 
-        <form:form method="POST" commandName="agenda">
+        <form:form method="POST" modelAttribute="agenda">
            <table>
                <tr>
-                   <td><form:label path="id">Id</form:label></td>
+                   <td><form:label path="id" />ID</td>
                    <td><form:input path="id" /></td>
                </tr>
+               <tr>
+                  <td><form:label path="title" />TITLE</td>
+                  <td><form:input path="title" /></td>
+              </tr>
+               <tr>
+                <td><form:label path="user" />USER</td>
+                <td><form:input path="user" /></td>
+              </tr>
+              <tr>
+                  <td><form:label path="password" />PASSWORD</td>
+                  <td><form:input path="password" /></td>
+              </tr>
+              <tr>
+                 <td><form:label path="url" />URL</td>
+                 <td><form:input path="url" /></td>
+              </tr>
+              <tr>
+               <td><form:label path="description" />DESCRIPTION</td>
+               <td><form:input path="description" /></td>
+            </tr>
+            <tr>
+               <td><form:label path="updatedAt" />Last update</td>
+               <td><form:input path="updatedAt" /></td>
+            </tr>
            </table>
        </form:form>
 

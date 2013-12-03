@@ -24,6 +24,7 @@
                 <c:out value="Description : ${agenda.description}"/><br/>
                 <c:out value="Create at : ${agenda.createdAt}"/><br/>
                 <c:out value="Update at : ${agenda.updatedAt}"/><br/>
+                <a href="edit/${agenda.id}">Edit</a><br/>
                 </p>
             </c:forEach>
         <p>

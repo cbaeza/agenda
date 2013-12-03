@@ -34,8 +34,10 @@ public class EditController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ModelAndView getAgenda(@PathVariable("id") String agendaID) {
+    public String getAgenda(@PathVariable("id") String agendaID, final ModelMap modelMap) {
         final Agendas agenda = agendaRepository.findOne(Integer.valueOf(agendaID));
-        return new ModelAndView(VIEW_NAME, "agenda", agenda);
+        modelMap.addAttribute("agenda", agenda);
+        modelMap.addAttribute("message", "hello from edit controller");
+        return "edit";
     }
 }
