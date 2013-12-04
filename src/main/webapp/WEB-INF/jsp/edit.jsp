@@ -16,7 +16,7 @@
         <h2>Message : ${message}</h2>
         <h2>Spring form</h2>
 
-        <form:form method="POST" modelAttribute="agenda">
+        <form:form method="POST" modelAttribute="agenda" action="/agenda/edit/update">
            <table>
                <tr>
                    <td><form:label path="id" />ID</td>
@@ -45,6 +45,11 @@
             <tr>
                <td><form:label path="updatedAt" />Last update</td>
                <td><form:input path="updatedAt" /></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="Update"/>
+                </td>
             </tr>
            </table>
        </form:form>

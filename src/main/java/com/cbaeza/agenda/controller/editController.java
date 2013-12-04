@@ -7,11 +7,10 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.portlet.ModelAndView;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Date;
 
 /**
  * User: cbaeza
@@ -40,4 +39,17 @@ public class EditController {
         modelMap.addAttribute("message", "hello from edit controller");
         return "edit";
     }
+
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    public String updateAgendaEntry(@ModelAttribute("agenda") Agendas agenda, BindingResult result) {
+        if (agenda == null) {
+            throw new RuntimeException("Agenda must not be null");
+        }
+        //TODO: find a way to handle Dates in form and read only values
+        agenda.setUpdatedAt(new Date());
+        agendaRepository.save(agenda);
+        return "redirect:/index";
+    }
+
+
 }
