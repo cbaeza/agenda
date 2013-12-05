@@ -15,6 +15,7 @@
         <h2>Message : ${message}</h2>
         <h2>Agendas : ${agendas_size}</h2>
             <c:forEach items="${agendas}" var="agenda">
+            <hr>
                 <p>
                     <c:out value="ID: "/><a href="index/${agenda.id}">${agenda.id}</a><br/>
                     <c:out value="Title : ${agenda.title}"/><br/>
