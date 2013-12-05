@@ -20,7 +20,7 @@
            <table>
                <tr>
                    <td><form:label path="id" />ID</td>
-                   <td><form:input path="id" /></td>
+                   <td><form:input path="id" readonly="true" /></td>
                </tr>
                <tr>
                   <td><form:label path="title" />TITLE</td>
@@ -44,11 +44,11 @@
             </tr>
             <tr>
                <td><form:label path="createdAt" />Creation date</td>
-               <td><form:input path="createdAt" /></td>
+               <td><form:input path="createdAt" readonly="true" /></td>
             </tr>
             <tr>
                <td><form:label path="updatedAt" />Last update</td>
-               <td><form:input path="updatedAt" /></td>
+               <td><form:input path="updatedAt" readonly="true" /></td>
             </tr>
             <tr>
                 <td colspan="2">
