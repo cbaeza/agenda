@@ -59,7 +59,7 @@
        </form:form>
 
         <p>
-            <a href="/agenda/index">back</a>
+            <a href="/agenda/index">All entries</a>
         </p>
     </body>
 </html>

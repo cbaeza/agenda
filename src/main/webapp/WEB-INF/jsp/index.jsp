@@ -16,19 +16,20 @@
         <h2>Agendas : ${agendas_size}</h2>
             <c:forEach items="${agendas}" var="agenda">
                 <p>
-                <c:out value="ID: "/><a href="index/${agenda.id}">${agenda.id}</a><br/>
-                <c:out value="Title : ${agenda.title}"/><br/>
-                <c:out value="User : ${agenda.user}"/><br/>
-                <c:out value="Password : ${agenda.password}"/><br/>
-                <c:out value="Url : ${agenda.url}"/><br/>
-                <c:out value="Description : ${agenda.description}"/><br/>
-                <c:out value="Create at : ${agenda.createdAt}"/><br/>
-                <c:out value="Update at : ${agenda.updatedAt}"/><br/>
-                <a href="edit/${agenda.id}">Edit</a><br/>
+                    <c:out value="ID: "/><a href="index/${agenda.id}">${agenda.id}</a><br/>
+                    <c:out value="Title : ${agenda.title}"/><br/>
+                    <c:out value="User : ${agenda.user}"/><br/>
+                    <c:out value="Password : ${agenda.password}"/><br/>
+                    <c:out value="Url : ${agenda.url}"/><br/>
+                    <c:out value="Description : ${agenda.description}"/><br/>
+                    <c:out value="Create at : ${agenda.createdAt}"/><br/>
+                    <c:out value="Update at : ${agenda.updatedAt}"/><br/>
+
+                    <p>
+                        <c:if test="${agendas_size == 1}"><a href="/agenda/index">All entries</a> | </c:if>
+                        <a href="/agenda/edit/${agenda.id}">Edit</a><br/>
+                    </p>
                 </p>
             </c:forEach>
-        <p>
-            <a href="/agenda/index">all entries</a>
-        </p>
     </body>
 </html>
