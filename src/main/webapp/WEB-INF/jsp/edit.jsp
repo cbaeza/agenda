@@ -23,24 +23,24 @@
                    <td><form:input path="id" readonly="true" /></td>
                </tr>
                <tr>
-                  <td><form:label path="title" />TITLE</td>
+                  <td><form:label path="title" />Title</td>
                   <td><form:input path="title" /></td>
               </tr>
                <tr>
-                <td><form:label path="user" />USER</td>
+                <td><form:label path="user" />User</td>
                 <td><form:input path="user" /></td>
               </tr>
               <tr>
-                  <td><form:label path="password" />PASSWORD</td>
+                  <td><form:label path="password" />Password</td>
                   <td><form:input path="password" /></td>
               </tr>
               <tr>
-                 <td><form:label path="url" />URL</td>
+                 <td><form:label path="url" />Url</td>
                  <td><form:input path="url" /></td>
               </tr>
               <tr>
-               <td><form:label path="description" />DESCRIPTION</td>
-               <td><form:input path="description" /></td>
+               <td><form:label path="description" />Description</td>
+               <td><form:textarea rows="5" path="description" /></td>
             </tr>
             <tr>
                <td><form:label path="createdAt" />Creation date</td>
