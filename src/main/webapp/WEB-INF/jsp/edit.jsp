@@ -43,6 +43,10 @@
                <td><form:input path="description" /></td>
             </tr>
             <tr>
+               <td><form:label path="createdAt" />Creation date</td>
+               <td><form:input path="createdAt" /></td>
+            </tr>
+            <tr>
                <td><form:label path="updatedAt" />Last update</td>
                <td><form:input path="updatedAt" /></td>
             </tr>

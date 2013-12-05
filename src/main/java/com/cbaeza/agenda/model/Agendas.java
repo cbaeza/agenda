@@ -2,6 +2,7 @@ package com.cbaeza.agenda.model;
 
 import org.hibernate.annotations.NamedNativeQueries;
 import org.hibernate.annotations.NamedNativeQuery;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
@@ -49,9 +50,13 @@ public class Agendas implements Serializable {
     @Size(max = 65535)
     @Column(length = 65535)
     private String description;
+
+    @DateTimeFormat(pattern = "dd.MM.yyyy")
     @Column(name = "created_at")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
+
+    @DateTimeFormat(pattern = "dd.MM.yyyy")
     @Column(name = "updated_at")
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
