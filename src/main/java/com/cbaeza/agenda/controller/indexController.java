@@ -50,9 +50,9 @@ public class IndexController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public String getAgenda(@PathVariable("id") final String agendaID, final Model model) {
+    public String getAgenda(@PathVariable("id") final Integer agendaID, final Model model) {
         LOG.debug("/index/{id} -> getAgenda");
-        final Agenda agenda = agendaRepository.findOne(Integer.valueOf(agendaID));
+        final Agenda agenda = agendaRepository.findOne(agendaID);
         final List<Agenda> agendasArrayList = Arrays.asList(agenda);
         model.addAttribute("agendas", agendasArrayList);
         model.addAttribute("message", "done.");

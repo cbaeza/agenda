@@ -34,9 +34,9 @@ public class EditController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public String getAgenda(@PathVariable("id") final String agendaID, final ModelMap modelMap) {
+    public String getAgenda(@PathVariable("id") final Integer agendaID, final ModelMap modelMap) {
         LOG.debug("/edit/{id} -> getAgenda");
-        final Agenda agenda = agendaRepository.findOne(Integer.valueOf(agendaID));
+        final Agenda agenda = agendaRepository.findOne(agendaID);
         modelMap.addAttribute("agenda", agenda);
         modelMap.addAttribute("message", "hello from edit controller");
         return "edit";
