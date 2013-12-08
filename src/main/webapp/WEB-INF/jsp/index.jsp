@@ -14,6 +14,11 @@
         <h1>Your personal agendas on Git Hub ---+++</h1>
         <h2>Message : ${message}</h2>
         <h2>Agendas : ${agendas_size}</h2>
+
+        <p>
+            <a href="/agenda/index/new">Add new Agenda</a>
+         </p>
+
             <c:forEach items="${agendas}" var="agenda">
             <hr>
                 <p>

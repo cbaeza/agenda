@@ -22,18 +22,20 @@ import java.util.Date;
 public class EditController {
 
     public static final String VIEW_NAME = "edit";
-    protected final Log logger = LogFactory.getLog(getClass());
+    protected final Log LOG = LogFactory.getLog(getClass());
     @Autowired
     private AgendaRepository agendaRepository;
 
     @RequestMapping(method = RequestMethod.GET)
     public String init(final ModelMap model) {
+        LOG.debug("/edit/ -> init");
         model.addAttribute("message", "hello from edit controller");
         return VIEW_NAME;
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public String getAgenda(@PathVariable("id") String agendaID, final ModelMap modelMap) {
+    public String getAgenda(@PathVariable("id") final String agendaID, final ModelMap modelMap) {
+        LOG.debug("/edit/{id} -> getAgenda");
         final Agendas agenda = agendaRepository.findOne(Integer.valueOf(agendaID));
         modelMap.addAttribute("agenda", agenda);
         modelMap.addAttribute("message", "hello from edit controller");
@@ -41,11 +43,11 @@ public class EditController {
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public String updateAgendaEntry(@ModelAttribute("agenda") Agendas agenda, BindingResult result) {
+    public String updateAgenda(@ModelAttribute("agenda") final Agendas agenda, final BindingResult result) {
+        LOG.debug("/edit/update -> updateAgenda");
         if (agenda == null) {
             throw new RuntimeException("Agenda must not be null");
         }
-        //TODO: find a way to handle Dates in form and read only values
         agenda.setUpdatedAt(new Date());
         agendaRepository.save(agenda);
         return "redirect:/index";
