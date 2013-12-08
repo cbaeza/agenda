@@ -1,7 +1,7 @@
 package com.cbaeza.agenda.controller;
 
 import com.cbaeza.agenda.mgmt.AgendaRepository;
-import com.cbaeza.agenda.model.Agendas;
+import com.cbaeza.agenda.model.Agenda;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,14 +36,14 @@ public class EditController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String getAgenda(@PathVariable("id") final String agendaID, final ModelMap modelMap) {
         LOG.debug("/edit/{id} -> getAgenda");
-        final Agendas agenda = agendaRepository.findOne(Integer.valueOf(agendaID));
+        final Agenda agenda = agendaRepository.findOne(Integer.valueOf(agendaID));
         modelMap.addAttribute("agenda", agenda);
         modelMap.addAttribute("message", "hello from edit controller");
         return "edit";
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public String updateAgenda(@ModelAttribute("agenda") final Agendas agenda, final BindingResult result) {
+    public String updateAgenda(@ModelAttribute("agenda") final Agenda agenda, final BindingResult result) {
         LOG.debug("/edit/update -> updateAgenda");
         if (agenda == null) {
             throw new RuntimeException("Agenda must not be null");

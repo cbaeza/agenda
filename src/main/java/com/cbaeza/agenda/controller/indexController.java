@@ -1,7 +1,7 @@
 package com.cbaeza.agenda.controller;
 
 import com.cbaeza.agenda.mgmt.AgendaRepository;
-import com.cbaeza.agenda.model.Agendas;
+import com.cbaeza.agenda.model.Agenda;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,10 +36,10 @@ public class IndexController {
     public String getAll(final ModelMap model) {
         LOG.debug("/index -> getAll");
         model.addAttribute("message", "hello from index");
-        final List<Agendas> agendasArrayList = new ArrayList<>(0);
-        final List<Agendas> all = agendaRepository.findAllAgendas();
+        final List<Agenda> agendasArrayList = new ArrayList<>(0);
+        final List<Agenda> all = agendaRepository.findAllAgendas();
 
-        for (Agendas a : all) {
+        for (Agenda a : all) {
             agendasArrayList.add(a);
         }
 
@@ -52,8 +52,8 @@ public class IndexController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String getAgenda(@PathVariable("id") final String agendaID, final Model model) {
         LOG.debug("/index/{id} -> getAgenda");
-        final Agendas agenda = agendaRepository.findOne(Integer.valueOf(agendaID));
-        final List<Agendas> agendasArrayList = Arrays.asList(agenda);
+        final Agenda agenda = agendaRepository.findOne(Integer.valueOf(agendaID));
+        final List<Agenda> agendasArrayList = Arrays.asList(agenda);
         model.addAttribute("agendas", agendasArrayList);
         model.addAttribute("message", "done.");
         model.addAttribute("agendas_size", agendasArrayList.size());
@@ -64,12 +64,12 @@ public class IndexController {
     public String newAgenda(final Model model) {
         LOG.debug("/index/new -> newAgenda");
         model.addAttribute("message", "Add new Agenda");
-        model.addAttribute("agenda", new Agendas());
+        model.addAttribute("agenda", new Agenda());
         return "agenda";
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String saveAgenda(@ModelAttribute("agenda") final Agendas agenda, final BindingResult result) {
+    public String saveAgenda(@ModelAttribute("agenda") final Agenda agenda, final BindingResult result) {
         LOG.debug("/index/save -> saveAgenda");
         if (agenda == null) {
             throw new RuntimeException("Agenda must not be null");

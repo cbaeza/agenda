@@ -18,16 +18,16 @@ import java.util.Date;
 @Table(name = "agendas")
 @XmlRootElement
 @NamedNativeQueries({
-        @NamedNativeQuery(name = "agendas.findAll", query = "SELECT * FROM agendas as a", resultClass = Agendas.class),
-        @NamedNativeQuery(name = "agendas.findById", query = "SELECT * FROM agendas as a WHERE a.id = :id", resultClass = Agendas.class),
-        @NamedNativeQuery(name = "agendas.findByTitle", query = "SELECT * FROM agendas as a WHERE a.title = :title", resultClass = Agendas.class),
-        @NamedNativeQuery(name = "agendas.findByUser", query = "SELECT * FROM agendas as a WHERE a.user = :user", resultClass = Agendas.class),
-        @NamedNativeQuery(name = "agendas.findByPassword", query = "SELECT * FROM agendas as a WHERE a.password = :password", resultClass = Agendas.class),
-        @NamedNativeQuery(name = "agendas.findByUrl", query = "SELECT * FROM agendas as a WHERE a.url = :url", resultClass = Agendas.class),
-        @NamedNativeQuery(name = "agendas.findByCreatedAt", query = "SELECT * FROM agendas as a WHERE a.createdAt = :createdAt", resultClass = Agendas.class),
-        @NamedNativeQuery(name = "agendas.findByUpdatedAt", query = "SELECT * FROM agendas as a WHERE a.updatedAt = :updatedAt", resultClass = Agendas.class)})
+        @NamedNativeQuery(name = "agendas.findAll", query = "SELECT * FROM agendas as a", resultClass = Agenda.class),
+        @NamedNativeQuery(name = "agendas.findById", query = "SELECT * FROM agendas as a WHERE a.id = :id", resultClass = Agenda.class),
+        @NamedNativeQuery(name = "agendas.findByTitle", query = "SELECT * FROM agendas as a WHERE a.title = :title", resultClass = Agenda.class),
+        @NamedNativeQuery(name = "agendas.findByUser", query = "SELECT * FROM agendas as a WHERE a.user = :user", resultClass = Agenda.class),
+        @NamedNativeQuery(name = "agendas.findByPassword", query = "SELECT * FROM agendas as a WHERE a.password = :password", resultClass = Agenda.class),
+        @NamedNativeQuery(name = "agendas.findByUrl", query = "SELECT * FROM agendas as a WHERE a.url = :url", resultClass = Agenda.class),
+        @NamedNativeQuery(name = "agendas.findByCreatedAt", query = "SELECT * FROM agendas as a WHERE a.createdAt = :createdAt", resultClass = Agenda.class),
+        @NamedNativeQuery(name = "agendas.findByUpdatedAt", query = "SELECT * FROM agendas as a WHERE a.updatedAt = :updatedAt", resultClass = Agenda.class)})
 
-public class Agendas implements Serializable {
+public class Agenda implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -61,7 +61,7 @@ public class Agendas implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
 
-    public Agendas(Integer id, String title, String user, String password, String url, String description, Date createdAt, Date updatedAt) {
+    public Agenda(Integer id, String title, String user, String password, String url, String description, Date createdAt, Date updatedAt) {
         this.id = id;
         this.title = title;
         this.user = user;
@@ -72,10 +72,10 @@ public class Agendas implements Serializable {
         this.updatedAt = updatedAt;
     }
 
-    public Agendas() {
+    public Agenda() {
     }
 
-    public Agendas(Integer id) {
+    public Agenda(Integer id) {
         this.id = id;
     }
 
@@ -153,9 +153,9 @@ public class Agendas implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Agendas)) return false;
+        if (!(o instanceof Agenda)) return false;
 
-        Agendas agendas = (Agendas) o;
+        Agenda agendas = (Agenda) o;
 
         if (id != null ? !id.equals(agendas.id) : agendas.id != null) return false;
 
