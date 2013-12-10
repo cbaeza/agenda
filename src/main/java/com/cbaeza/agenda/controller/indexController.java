@@ -2,6 +2,7 @@ package com.cbaeza.agenda.controller;
 
 import com.cbaeza.agenda.mgmt.AgendaRepository;
 import com.cbaeza.agenda.model.Agenda;
+import com.cbaeza.agenda.utils.AgendaUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -33,13 +36,18 @@ public class IndexController {
     private AgendaRepository agendaRepository;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String getAll(final ModelMap model) {
+    public String getAll(final ModelMap model)  {
         LOG.debug("/index -> getAll");
         model.addAttribute("message", "hello from index");
         final List<Agenda> agendasArrayList = new ArrayList<>(0);
         final List<Agenda> all = agendaRepository.findAllAgendas();
 
         for (Agenda a : all) {
+            try {
+                a.setPassword(AgendaUtils.encrypter(a.getPassword()));
+            } catch (Exception e) {
+                LOG.error(e);
+            }
             agendasArrayList.add(a);
         }
 
