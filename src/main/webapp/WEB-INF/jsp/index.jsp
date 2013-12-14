@@ -17,25 +17,24 @@
 
         <p>
             <a href="/agenda/index/new">Add new Agenda</a>
-         </p>
+        </p>
 
-            <c:forEach items="${agendas}" var="agenda">
-            <hr>
+        <c:forEach items="${agendas}" var="agenda">
+        <hr>
+            <p>
+                <strong>ID:</strong> <a href="index/${agenda.id}">${agenda.id}</a><br/>
+                <strong>Title:</strong> ${agenda.title}<br/>
+                <strong>User:</strong> ${agenda.user}<br/>
+                <strong>Password:</strong> ${agenda.password}<br/>
+                <a href="${agenda.url}" target="_blank">GO TO SITE</a> <br/>
+                <strong>Description:</strong> ${agenda.description}<br/>
+                <strong>Create at: </strong> ${agenda.createdAt}<br/>
+                <strong>Update at: </strong> ${agenda.updatedAt}<br/>
                 <p>
-                    <c:out value="ID: "/><a href="index/${agenda.id}">${agenda.id}</a><br/>
-                    <c:out value="Title : ${agenda.title}"/><br/>
-                    <c:out value="User : ${agenda.user}"/><br/>
-                    <c:out value="Password : ${agenda.password}"/><br/>
-                    <c:out value="Url : ${agenda.url}"/><br/>
-                    <c:out value="Description : ${agenda.description}"/><br/>
-                    <c:out value="Create at : ${agenda.createdAt}"/><br/>
-                    <c:out value="Update at : ${agenda.updatedAt}"/><br/>
-
-                    <p>
-                        <c:if test="${agendas_size == 1}"><a href="/agenda/index">All entries</a> | </c:if>
-                        <a href="/agenda/edit/${agenda.id}">Edit</a><br/>
-                    </p>
+                    <c:if test="${agendas_size == 1}"><a href="/agenda/index">All entries</a> | </c:if>
+                    <a href="/agenda/edit/${agenda.id}">Edit</a><br/>
                 </p>
-            </c:forEach>
+            </p>
+        </c:forEach>
     </body>
 </html>
