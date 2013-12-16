@@ -84,7 +84,7 @@ public class AESEncrypter {
         final String message = "MESSAGE";
         final String password = "SECRET";
 
-        final AESEncrypter encrypter = new AESEncrypter(password);
+        final AESEncrypter encrypter = AESEncrypter.getInstance();//new AESEncrypter(password);
         final String encrypted = encrypter.encrypt(message);
         final String decrypted = encrypter.decrypt(encrypted);
 

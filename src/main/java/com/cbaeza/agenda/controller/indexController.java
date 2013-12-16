@@ -44,7 +44,8 @@ public class IndexController {
 
         for (Agenda a : all) {
             try {
-                final String encrypter = AgendaUtils.encrypter(a.getPassword());
+                String password = a.getPassword();
+                final String encrypter = AgendaUtils.encrypter(password);
                 a.setPassword(encrypter);
             } catch (Exception e) {
                 LOG.error(e);

@@ -37,7 +37,7 @@ public class AgendaUtils {
      * @see AESEncrypter
      */
     public static String encrypter(final String toEncrypter) throws Exception {
-        return AESEncrypter.getInstance().encrypt(toEncrypter.getBytes("UTF-8")).toString();
+        return AESEncrypter.getInstance().encrypt(toEncrypter).toString();
     }
 
     /**
@@ -48,6 +48,6 @@ public class AgendaUtils {
      * @throws Exception
      */
     public static String decrypter(final String toDecrypter) throws Exception {
-        return AESEncrypter.getInstance().decrypt(toDecrypter.getBytes("UTF-8")).toString();
+        return AESEncrypter.getInstance().decrypt(toDecrypter).toString();
     }
 }
