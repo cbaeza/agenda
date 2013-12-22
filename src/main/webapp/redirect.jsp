@@ -10,4 +10,4 @@ servlet but should be the only JSP outside of WEB-INF.
 
 <%-- response.sendRedirect("index.htm"); --%>
 <%-- Redirected because we can't set the welcome page to a virtual URL. --%>
-<c:redirect url="index.htm"/>
+<c:redirect url="login.htm"/>
