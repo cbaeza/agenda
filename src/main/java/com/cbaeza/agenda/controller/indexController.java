@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import java.io.UnsupportedEncodingException;
-import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -36,20 +34,13 @@ public class IndexController {
     private AgendaRepository agendaRepository;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String getAll(final ModelMap model)  {
+    public String getAll(final ModelMap model) {
         LOG.debug("/index -> getAll");
         model.addAttribute("message", "hello from index");
         final List<Agenda> agendasArrayList = new ArrayList<>(0);
         final List<Agenda> all = agendaRepository.findAllAgendas();
 
         for (Agenda a : all) {
-            try {
-                String password = a.getPassword();
-                final String encrypter = AgendaUtils.encrypter(password);
-                a.setPassword(encrypter);
-            } catch (Exception e) {
-                LOG.error(e);
-            }
             agendasArrayList.add(a);
         }
 
@@ -85,10 +76,13 @@ public class IndexController {
             throw new RuntimeException("Agenda must not be null");
         }
         final Date now = new Date();
+        agenda.setPassword(AgendaUtils.encrypter(agenda.getPassword()));
         agenda.setCreatedAt(now);
         agenda.setUpdatedAt(now);
         agendaRepository.save(agenda);
         return "redirect:/index";
     }
+
+
 
 }

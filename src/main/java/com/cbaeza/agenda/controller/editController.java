@@ -2,6 +2,7 @@ package com.cbaeza.agenda.controller;
 
 import com.cbaeza.agenda.mgmt.AgendaRepository;
 import com.cbaeza.agenda.model.Agenda;
+import com.cbaeza.agenda.utils.AgendaUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,7 @@ public class EditController {
     public String getAgenda(@PathVariable("id") final Integer agendaID, final ModelMap modelMap) {
         LOG.debug("/edit/{id} -> getAgenda");
         final Agenda agenda = agendaRepository.findOne(agendaID);
+        agenda.setPassword(AgendaUtils.decrypter(agenda.getPassword()));
         modelMap.addAttribute("agenda", agenda);
         modelMap.addAttribute("message", "hello from edit controller");
         return "edit";
@@ -48,6 +50,7 @@ public class EditController {
         if (agenda == null) {
             throw new RuntimeException("Agenda must not be null");
         }
+        agenda.setPassword(AgendaUtils.encrypter(agenda.getPassword()));
         agenda.setUpdatedAt(new Date());
         agendaRepository.save(agenda);
         return "redirect:/index";

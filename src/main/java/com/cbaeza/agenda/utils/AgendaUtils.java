@@ -36,8 +36,12 @@ public class AgendaUtils {
      * @throws Exception
      * @see AESEncrypter
      */
-    public static String encrypter(final String toEncrypter) throws Exception {
-        return AESEncrypter.getInstance().encrypt(toEncrypter).toString();
+    public static String encrypter(final String toEncrypter) {
+        try {
+            return AESEncrypter.getInstance().encrypt(toEncrypter).toString();
+        } catch (Exception e) {
+            throw new RuntimeException("Error encrypting: " + toEncrypter, e);
+        }
     }
 
     /**
@@ -47,7 +51,11 @@ public class AgendaUtils {
      * @return a readable string
      * @throws Exception
      */
-    public static String decrypter(final String toDecrypter) throws Exception {
-        return AESEncrypter.getInstance().decrypt(toDecrypter).toString();
+    public static String decrypter(final String toDecrypter){
+        try {
+            return AESEncrypter.getInstance().decrypt(toDecrypter).toString();
+        } catch (Exception e) {
+            throw new RuntimeException("Error decrypting: " + toDecrypter, e);
+        }
     }
 }
