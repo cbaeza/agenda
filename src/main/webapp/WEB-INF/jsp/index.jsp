@@ -22,7 +22,7 @@
         <c:forEach items="${agendas}" var="agenda">
         <hr>
             <p>
-                <strong>ID:</strong> <a href="index/${agenda.id}">${agenda.id}</a><br/>
+                <strong>ID:</strong> <a href="/agenda/index/${agenda.id}">${agenda.id}</a><br/>
                 <strong>Title:</strong> ${agenda.title}<br/>
                 <strong>User:</strong> ${agenda.user}<br/>
                 <strong>Password:</strong> ${agenda.password}<br/>
