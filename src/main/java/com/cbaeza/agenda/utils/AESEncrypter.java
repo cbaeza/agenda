@@ -9,7 +9,9 @@ import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.SecretKeySpec;
+import java.io.IOException;
 import java.security.spec.KeySpec;
+import java.util.Properties;
 
 /**
  * User: cbaeza
@@ -23,27 +25,9 @@ public class AESEncrypter {
     };
     private static final int ITERATION_COUNT = 65536;
     private static final int KEY_LENGTH = 256;
+    private static AESEncrypter instance;
     private final Cipher ecipher;
     private final Cipher dcipher;
-    private static final String PASSWORD = "SECRET";
-
-    private static AESEncrypter instance;
-
-    /**
-     * Singleton
-     *
-     * @return
-     */
-    public static AESEncrypter getInstance() {
-        if (instance == null) {
-            try {
-                instance = new AESEncrypter(PASSWORD);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        return instance;
-    }
 
     private AESEncrypter(String passPhrase) throws Exception {
         final SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
@@ -57,6 +41,54 @@ public class AESEncrypter {
         dcipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
         final byte[] iv = ecipher.getParameters().getParameterSpec(IvParameterSpec.class).getIV();
         dcipher.init(Cipher.DECRYPT_MODE, secret, new IvParameterSpec(iv));
+    }
+
+    /**
+     * Singleton
+     *
+     * @return a unique instance of AESEncrypter
+     */
+    public static AESEncrypter getInstance() {
+        if (instance == null) {
+            try {
+                instance = new AESEncrypter(getSecret());
+            } catch (Exception e) {
+                throw new RuntimeException("Can't initialize AESEncrypter", e);
+            }
+        }
+        return instance;
+    }
+
+    /**
+     * Get secret password to en/decrypt
+     *
+     * @return a secret
+     */
+    private static String getSecret() {
+        final Properties properties = new Properties();
+        try {
+            properties.load(AESEncrypter.class.getResourceAsStream("/config.properties"));
+            for (String key : properties.stringPropertyNames()) {
+                if (key.equals("secret"))
+                    return properties.getProperty(key);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException("Can't load property file", e);
+        }
+        return null;
+    }
+
+    public static void main(String[] args) throws Exception {
+
+        final String message = "MESSAGE";
+        final String password = "SECRET";
+
+        final AESEncrypter encrypter = AESEncrypter.getInstance();//new AESEncrypter(password);
+        final String encrypted = encrypter.encrypt(message);
+        final String decrypted = encrypter.decrypt(encrypted);
+
+        System.out.println("Encrypt(\"" + message + "\", \"" + password + "\") = \"" + encrypted + "\"");
+        System.out.println("Decrypt(\"" + encrypted + "\", \"" + password + "\") = \"" + decrypted + "\"");
     }
 
     public String encrypt(String encrypt) throws Exception {
@@ -77,18 +109,5 @@ public class AESEncrypter {
 
     public byte[] decrypt(byte[] encrypt) throws Exception {
         return dcipher.doFinal(encrypt);
-    }
-
-    public static void main(String[] args) throws Exception {
-
-        final String message = "MESSAGE";
-        final String password = "SECRET";
-
-        final AESEncrypter encrypter = AESEncrypter.getInstance();//new AESEncrypter(password);
-        final String encrypted = encrypter.encrypt(message);
-        final String decrypted = encrypter.decrypt(encrypted);
-
-        System.out.println("Encrypt(\"" + message + "\", \"" + password + "\") = \"" + encrypted + "\"");
-        System.out.println("Decrypt(\"" + encrypted + "\", \"" + password + "\") = \"" + decrypted + "\"");
     }
 }
